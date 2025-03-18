@@ -1,0 +1,57 @@
+import pandas as pd
+import redshift_connector
+import oracledb
+import os
+import getpass
+
+
+sql_string1 = """
+     select distinct
+gs.gst_id as CID
+
+from odsmgr.uncw_reg_general_student gs
+where gs.gst_death_ind = 'Y'
+
+"""
+
+SQL_String2 = '''
+SELECT
+gr.student_cid,
+exclude_6
+FROM uncw.da_gradret gr
+
+WHERE gr.grad_retn_from_desc = 'Same UNC University'
+and exclude_6 is Null
+
+ORDER BY
+gr.cohort_term_code   
+, gr.student_cid
+
+'''
+conn = redshift_connector.connect(
+    host='insight.northcarolina.edu',
+    port=5439,
+    database='unc',
+    user='iss_***',
+    password='******')
+
+conn1 = oracledb.connect(user = 'jame***', password=input('Enter your banner password:'), dsn = 'PODS') 
+
+cursor1 = conn1.cursor()
+cursor1.execute(sql_string1)
+df1 = pd.DataFrame(cursor1.fetchall())
+df1.drop(index=0, inplace=True)
+df1.columns = ['student_cid']
+df1
+
+cursor2 = conn.cursor()
+cursor2.execute(SQL_String2)
+df2 = cursor2.fetch_dataframe()
+df2
+#df2.loc[df2['student_cid'] == '850*****']
+#df1.to_csv(r'C:\Users\jamesal\OneDrive - UNC-Wilmington\Python\Codes\df1.csv',index=False)
+
+df1['student_cid'].isin(df2['student_cid']).value_counts()
+bannerid_not_in_gradret = df1['student_cid'].isin(df2['student_cid'])
+df3 = df1[~bannerid_not_in_gradret]
+df3
