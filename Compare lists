@@ -1,0 +1,21 @@
+fh1 = open("A2324.txt")
+fh2 = open("C2324.txt")
+l1 = []
+l2 = []
+for line in fh1:
+    line = line.strip()
+    l1.append(line)
+for line in fh2:
+    line = line.strip()
+    l2.append(line)
+
+for item in l1:
+    if item in l2: continue
+    else:
+        print(item, "is not in C2324.txt")
+for item in l2:
+    if item in l1: continue
+    else:
+        print(item, "is not in A2324.txt")
+
+

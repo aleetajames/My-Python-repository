@@ -1,0 +1,17 @@
+#count members of a list using dictionaries
+c = {}
+names = ['aj', 'arp', 'aj', 'arp', 'np', 'np', 'arp', 'np']
+for name in names:
+    if name not in c:
+        c[name] = 1
+    else:
+        c[name] = c[name] + 1
+print(c)
+
+#same as above using get method
+
+c = {}
+names = ['aj', 'arp', 'aj', 'arp', 'np', 'np', 'arp', 'np']
+for name in names:
+    c[name] = c.get(name, 0) +1
+print(c)
