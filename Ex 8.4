@@ -1,0 +1,13 @@
+fh = open("romeo.txt")
+fr = fh.read()
+w = fr.split()
+w.sort()
+l1 = []
+for i in range(len(w)):
+    if i == 0:
+        l1.append(w[i])   
+    else:
+        if w[i] in l1: continue
+        else:
+            l1.append(w[i])
+print (l1)

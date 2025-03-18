@@ -1,0 +1,20 @@
+nh = open("mbox-short.txt")
+l = []
+sendername = []
+d = {}
+for line in nh:
+    line = line.rstrip()
+    if not line.startswith("From ") : continue
+    else:
+        w = line.split()
+        l.append(w[1])
+
+for item in l:
+    d[item] = d.get(item,0) + 1
+maxname = None
+maxcount = None
+for name,count in d.items():
+    if maxname is None or count > maxcount:
+        maxname = name
+        maxcount = count
+print (maxname, maxcount)

@@ -1,0 +1,20 @@
+#code with mosh challenge 1, dice game
+import random
+l = 0
+
+while True:
+    response = input("Roll the dice? (y/n): ").lower()
+    if response == 'y':
+        c,k = random.randint(0,6) , random.randint(0,6)
+        print((c,k))
+# set up counter for response
+        l += 1
+        print("Count =", l)
+        continue
+    elif response == 'n':
+        print('Thank you')
+        break
+    else:
+        print('Invalid output')
+
+        

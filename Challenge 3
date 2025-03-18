@@ -1,0 +1,34 @@
+#code with mosh challenge 3, rock,paper, scissors
+import random
+
+choices = ('r', 'p', 's')
+while True:
+    ready_to_play = input('Are you ready o play?(y/n): ').lower()
+    
+    if ready_to_play == 'y':
+        ch = input('Rock,paper, or scissors? (choose from -> r,p,s): ').lower()
+        
+        if ch not in choices:
+            print('Input a valid choice,select from -> r,p,s')
+            continue
+        else:
+            print(f'You chose: {ch}')
+        random_selection = random.choice(choices)
+        print(f'Computer chose: {random_selection}')
+
+        if ch == 'r' and random_selection == 'p':
+            print("Computer won")
+        elif ch == random_selection:
+            print ("It is a tie")
+        elif ch == 'r' and random_selection == 's':
+            print ("You won")
+        elif ch == 's' and random_selection == 'p':
+            print("You won")
+        elif ch == 's' and random_selection == 'r':
+            print("Computer won")
+        elif ch == 'p' and random_selection == 'r':
+            print("You won")
+        elif ch == 'p' and random_selection == 's':
+            print("Computer won")
+    else:
+        break

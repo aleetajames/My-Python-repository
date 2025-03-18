@@ -1,0 +1,26 @@
+#code with mosh challenge 2, guess the number
+import random
+
+p = 0
+guess = random.randint(1, 100)
+while True:
+    Play = input("Let's Play (y/n)? ")
+    if Play == 'y':
+        p += 1
+        print ('player', p)
+        c = 0
+        while True:
+            try:
+                n = int (input("Guess the number (between 1 and 100): "))
+                c += 1
+                if n<guess:
+                    print("Too low")
+                elif n>guess:
+                    print("Too high")
+                elif n==guess:
+                    print("Congratulations! You guessed the number in", c ,"attempts")
+                    break
+            except:
+                print('I accept only integers from 1 to 100, try again.')
+    else:
+        break

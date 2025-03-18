@@ -1,0 +1,30 @@
+name = input("Enter file:")
+if len(name) < 1:
+    name = "mbox-short.txt"
+h = open(name)
+#create empty lists and dict
+wds = []
+ti = []
+l= []
+hrs=[]
+d = {}
+#create a list wds of words from the text
+for line in h:
+    line = line.rstrip()
+    if not line.startswith('From '): continue
+    else:
+        wds = line.split()
+#create a list l of all the words at 5th index
+        l.append(wds[5])
+#print(l)
+#split the time to get the hour
+for t in l:
+    ti = t.split(':')
+    hrs.append(ti[0])
+#get the dict filled in with the hour and its count of occurance
+for hr in hrs:
+    d[hr] = d.get(hr,0) + 1
+#print (d)
+k = sorted(d.items())
+for a,b in k:
+    print(a,b)
